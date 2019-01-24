@@ -63,7 +63,7 @@ ___
     **COMPASS**
 
     ```COMPASS
-    FILTER: {"ipo.valuation_amount": { $gt: 1000000 }, founded_year: { $lt: 2010 }}
+    FILTER: { "ipo.valuation_amount": { $gt: 1000000 }, founded_year: { $lt: 2010 } }
     PROJECT: { name: 1, ipo: 1 }
     ```
 
@@ -74,7 +74,23 @@ ___
     ```
 ___
 
-5. All the companies that have less than 1000 employees and have been founded before 2005. Order them by the number of employees and limit the search to 10 companies.
+5. All the companies that have less than 1000 employees and have been founded before 2005. Order them by the number of employees and limit the search to 10 companies:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { number_of_employees: {$lt: 1000}, founded_year: {$lt: 2005} }
+    SORT: { number_of_employees: 1 }
+    LIMIT: 10
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({number_of_employees: {$lt: 1000}, founded_year: {$lt: 2005}}).limit(10).sort({number_of_employees: 1})
+    ```
+___
+
 6. All the companies that don't include the `partners` field.
 7. All the companies that have a null type of value on the `category_code` field.
 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
