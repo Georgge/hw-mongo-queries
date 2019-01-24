@@ -1,30 +1,43 @@
-### Solutions to Iteration 2
+# Solutions to Iteration 2
 
 You already know how this goes, so let's start working:
 
 1. All the companies that it's name match 'Babelgum'. Retrieve only their `name` field:
-  ~~~~
-  FILTER: { name: "Babelgum" }
-  PROJECT: { name: 1, _id: 0 }
-  ~~~~
+    The projection parameter determines which fields are returned in the matching documents.
 
-2.  All the companies that have more than 5000 employees. Limit the search to 20 companies and sort them by  **number of employees**:
+    **COMPASS**
 
-	`$gt`  selects those documents where the value of the field is greater than (i.e. >) the specified value.  
-	`SORT`: -1 order of ascending and 1 in descending
+    ```COMPASS
+    FILTER: { name: "Babelgum" }
+    PROJECT: { name: 1, _id: 0 }
+    ```
 
-	**COMPASS**
+    **MONGO SHELL**
 
-	```
-	FILTER: { number_of_employees: { $gt: 5000  }}
-	SORT: { number_of_employees: -1 }
-	LIMIT: 20
-	```
-	**MONGO SHELL**
+    ```MONGO SHELL
+    db.getCollection('companies').find({ name: "Babelgum" }).projection({ name: 1, _id: 0 })
+    ```
 
-	```
-	  db.getCollection('companies').find({number_of_employees: { $gt: 5000  }}).limit(20).sort({number_of_employees: -1})
-	```
+___
+
+2. All the companies that have more than 5000 employees. Limit the search to 20 companies and sort them by  **number of employees**:
+
+    `$gt`  selects those documents where the value of the field is greater than (i.e. >) the specified value.  
+    `SORT`: -1 order of ascending and 1 in descending
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { number_of_employees: { $gt: 5000  }}
+    SORT: { number_of_employees: -1 }
+    LIMIT: 20
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({number_of_employees: { $gt: 5000  }}).limit(20).sort({number_of_employees: -1})
+    ```
 ___
 
 3. All the companies founded between 2000 and 2005, both years included. Retrieve only the `name` and `founded_year` fileds.
