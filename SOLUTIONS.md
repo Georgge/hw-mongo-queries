@@ -58,7 +58,22 @@ ___
     db.getCollection('companies').find({ founded_year: { $gt: 1999, $lt: 2006 } }).projection({ name: 1, founded_year: 1 })
     ```
 ___
-4. All the companies that had a Valuation Amount of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields.
+4. All the companies that had a Valuation Amount of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: {"ipo.valuation_amount": { $gt: 1000000 }, founded_year: { $lt: 2010 }}
+    PROJECT: { name: 1, ipo: 1 }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({"ipo.valuation_amount": { $gt: 1000000 }, founded_year: { $lt: 2010 }}).projection({ name: 1, ipo: 1 })
+    ```
+___
+
 5. All the companies that have less than 1000 employees and have been founded before 2005. Order them by the number of employees and limit the search to 10 companies.
 6. All the companies that don't include the `partners` field.
 7. All the companies that have a null type of value on the `category_code` field.
