@@ -3,7 +3,8 @@
 You already know how this goes, so let's start working:
 
 1. All the companies that it's name match 'Babelgum'. Retrieve only their `name` field:
-    The projection parameter determines which fields are returned in the matching documents.
+
+    The ```projection``` parameter determines which fields are returned in the matching documents. 1 or true to include the field in the return documents and 0 or false to exclude the field.
 
     **COMPASS**
 
