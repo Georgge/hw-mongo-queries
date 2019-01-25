@@ -93,6 +93,8 @@ ___
 
 6. All the companies that don't include the `partners` field:
 
+	`$exist` receives a boolean. When `boolean` is `true`, `$exists` matches the documents that contain the field, including documents where the field value is `null`. If `boolean` is `false`, the query returns only the documents that do not contain the field.
+
     **COMPASS**
 
     ```COMPASS
