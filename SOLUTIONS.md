@@ -123,7 +123,21 @@ ___
     ```
 ___
 
-8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
+8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { number_of_employees: { $gt: 100 }, number_of_employees: { $lt: 1000 } }
+    PROJECT: { name: 1, number_of_employees: 1 }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({number_of_employees: {$gt: 100}, number_of_employees: {$lt: 1000}}).projection({name: 1, number_of_employees: 1})
+    ```
+
 9. Order all the companies by their IPO price descendently.
 10. Retrieve the 10 companies with more employees, order by the `number of employees`
 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies.
