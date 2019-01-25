@@ -250,7 +250,23 @@ ___
 ___
 
 
-14. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
+14. Order the companies by their `founded year`, retrieving only their `name` and `founded year`:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { founded_year: { $ne: null } } // Only if you want to skip the nulls
+    PROJECT: { name: 1, founded_year: 1 }
+    SORT: { founded_year: 1 }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').createIndex({founded_year: 1}) // to avoid memory overflow
+    db.getCollection('companies').find({founded_year: { $ne: null }}).sort({founded_year: 1}).projection({name: 1, founded_year: 1})
+    ```
+___
 15. All the companies that have been founded on the first seven days of the month, including the seventh. Sort them by their `aquisition price` descendently. Limit the search to 10 documents.
 16. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascendant order.
 17. All the companies which their acquisition amount is more than 10.000.000, and currency are 'EUR'.
