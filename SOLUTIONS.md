@@ -224,13 +224,13 @@ ___
     db.getCollection('companies').find({"acquisition.acquired_year": {$gt: 2013}}).sort({"acquisition.price_amount": 1}).projection({name: 1, acquisition: 1})
     ```
 
-    **Playing a little with the thirteen query:** All the companies that have been acquired after 2015, order by the acquisition amount, **but also that the acquisition price is not null**. Retrieve only their name and acquisition field:
+    **Playing a little with the thirteen query:**
+
+    13.1 All the companies that have been acquired after 2015, order by the acquisition amount, **but also that the acquisition price is not null**. Retrieve only their name and acquisition field:
 
     `$ne` selects the documents where the value of the field is not equal to the specified value. This includes documents that do not contain the field.
 
     `$and` performs a logical AND operation on an array of two or more expressions (e.g. `expression1`, `expression2`, etc.) and selects the documents that satisfy all the expressions in the array. The `$and` operator uses short-circuit evaluation. If the first expression (e.g. `expression1`) evaluates to false, MongoDB will not evaluate the remaining expressions.
-
-    <span stye="color: red" >example</span>
 
     **COMPASS**
 
@@ -243,7 +243,7 @@ ___
     **MONGO SHELL**
 
     ```MONGO SHELL
-    db.getCollection('companies').find({"acquisition.acquired_year": {$gt: 2013}}).sort({"acquisition.price_amount": 1}).projection({name: 1, acquisition: 1})
+    db.getCollection('companies').find({ $and: [{"acquisition.acquired_year": { $gt: 2013 }}, {"acquisition.price_amount": { $ne: null}} ]}).sort({"acquisition.price_amount": 1}).projection({name: 1, acquisition: 1})
     ```
 ___
 
