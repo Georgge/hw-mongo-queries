@@ -93,7 +93,7 @@ ___
 
 6. All the companies that don't include the `partners` field:
 
-	`$exist` receives a boolean. When `boolean` is `true`, `$exists` matches the documents that contain the field, including documents where the field value is `null`. If `boolean` is `false`, the query returns only the documents that do not contain the field.
+    `$exist` receives a boolean. When `boolean` is `true`, `$exists` matches the documents that contain the field, including documents where the field value is `null`. If `boolean` is `false`, the query returns only the documents that do not contain the field.
 
     **COMPASS**
 
@@ -108,7 +108,21 @@ ___
     ```
 ___
 
-7. All the companies that have a null type of value on the `category_code` field.
+7. All the companies that have a null type of value on the `category_code` field:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { category_code: null }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({category_code: null})
+    ```
+___
+
 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
 9. Order all the companies by their IPO price descendently.
 10. Retrieve the 10 companies with more employees, order by the `number of employees`
