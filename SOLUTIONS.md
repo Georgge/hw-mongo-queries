@@ -210,6 +210,8 @@ ___
 
 13. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field:
 
+    Spoiler: there are no records...
+
     **COMPASS**
 
     ```COMPASS
@@ -221,12 +223,12 @@ ___
     **MONGO SHELL**
 
     ```MONGO SHELL
-    db.getCollection('companies').find({"acquisition.acquired_year": {$gt: 2013}}).sort({"acquisition.price_amount": 1}).projection({name: 1, acquisition: 1})
+    db.getCollection('companies').find({"acquisition.acquired_year": {$gt: 2015}}).sort({"acquisition.price_amount": 1}).projection({name: 1, acquisition: 1})
     ```
 
     **Playing a little with the thirteen query:**
 
-    13.1 All the companies that have been acquired after 2015, order by the acquisition amount, **but also that the acquisition price is not null**. Retrieve only their name and acquisition field:
+    13.1 All the companies that have been acquired after **2013**, order by the acquisition amount, **but also that the acquisition price is not null**. Retrieve only their name and acquisition field:
 
     `$ne` selects the documents where the value of the field is not equal to the specified value. This includes documents that do not contain the field.
 
