@@ -171,8 +171,6 @@ ___
     ```MONGO SHELL
     db.getCollection('companies').find({}).sort({number_of_employees: -1}).limit(10)
     ```
-
-    **Only in mongo shell**...When there are many documents, the memory overflows when doing the `sort` causing an error. The solution is to create an `Index` before executing the query.
 ___
 
 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies:
@@ -189,8 +187,6 @@ ___
     ```MONGO SHELL
     db.getCollection('companies').find({founded_month: { $gt: 5 }}).limit(1000)
     ```
-
-    **Only in mongo shell**...When there are many documents, the memory overflows when doing the `sort` causing an error. The solution is to create an `Index` before executing the query.
 ___
 
 12. All the companies founded before 2000 that have and acquisition amount of more than 10.000.000
