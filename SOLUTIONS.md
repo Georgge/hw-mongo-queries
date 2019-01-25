@@ -45,7 +45,7 @@ ___
 
     `$lte` selects the documents where the value of the field is less than or equal to (i.e. <=) the specified value.
 
-    `gte` $gte selects the documents where the value of the field is greater than or equal to (i.e. >=) a specified value
+    `$gte` $gte selects the documents where the value of the field is greater than or equal to (i.e. >=) a specified value
 
     **COMPASS**
 
@@ -61,6 +61,8 @@ ___
     ```
 ___
 4. All the companies that had a Valuation Amount of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields:
+
+    `$lt` selects the documents where the value of the field is less than (i.e. <) the specified value.
 
     **COMPASS**
 
@@ -207,6 +209,43 @@ ___
 ___
 
 13. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { "acquisition.acquired_year": { $gt: 2015 } }
+    PROJECT: { name: 1, acquisition: 1}
+    SORT: { "acquisition.price_amount": 1 }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({"acquisition.acquired_year": {$gt: 2013}}).sort({"acquisition.price_amount": 1}).projection({name: 1, acquisition: 1})
+    ```
+
+    **Playing a little with the thirteen query:** All the companies that have been acquired after 2015, order by the acquisition amount, **but also that the acquisition price is not null**. Retrieve only their name and acquisition field:
+
+    `$ne` selects the documents where the value of the field is not equal to the specified value. This includes documents that do not contain the field.
+
+    `$and` performs a logical AND operation on an array of two or more expressions (e.g. `expression1`, `expression2`, etc.) and selects the documents that satisfy all the expressions in the array. The `$and` operator uses short-circuit evaluation. If the first expression (e.g. `expression1`) evaluates to false, MongoDB will not evaluate the remaining expressions.
+
+    <span stye="color: red" >example</span>
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { $and: [ {"acquisition.acquired_year": { $gt: 2013 } }, {"acquisition.price_amount": { $ne: null} } ] }
+    PROJECT: { name: 1, acquisition: 1}
+    SORT: { "acquisition.price_amount": 1 }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({"acquisition.acquired_year": {$gt: 2013}}).sort({"acquisition.price_amount": 1}).projection({name: 1, acquisition: 1})
+    ```
+___
 
 
 14. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
