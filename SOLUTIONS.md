@@ -43,12 +43,14 @@ ___
 
 3. All the companies founded between 2000 and 2005, both years included. Retrieve only the `name` and `founded_year` fileds:
 
-    `$lt` selects the documents where the value of the field is less than (i.e. <) the specified value.
+    `$lte` selects the documents where the value of the field is less than or equal to (i.e. <=) the specified value.
+
+    `gte` $gte selects the documents where the value of the field is greater than or equal to (i.e. >=) a specified value
 
     **COMPASS**
 
     ```COMPASS
-    FILTER: { founded_year: { $gt: 1999, $lt: 2006 } }
+    FILTER: { founded_year: { $gte: 2000, $lte: 2005 } }
     PROJECT: { name: 1, founded_year: 1 }
     ```
 
@@ -204,7 +206,9 @@ ___
     ```
 ___
 
-13. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field.
+13. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field:
+
+
 14. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
 15. All the companies that have been founded on the first seven days of the month, including the seventh. Sort them by their `aquisition price` descendently. Limit the search to 10 documents.
 16. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascendant order.
