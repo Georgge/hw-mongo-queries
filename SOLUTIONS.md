@@ -156,8 +156,8 @@ ___
     **MONGO SHELL**
 
     ```MONGO SHELL
-    db.getCollection('companies').createIndex({"ipo.valuation_amount": 1})
-    db.getCollection('companies').find({}).sort({"ipo.valuation_amount": 1})
+    db.getCollection('companies').createIndex({"ipo.valuation_amount": -1})
+    db.getCollection('companies').find({}).sort({"ipo.valuation_amount": -1})
     ```
 
     **Only in mongo shell**...When there are many documents, the memory overflows when doing the `sort` causing an error. The solution is to create an `Index` before executing the query.
