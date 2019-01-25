@@ -24,7 +24,7 @@ ___
 2. All the companies that have more than 5000 employees. Limit the search to 20 companies and sort them by  **number of employees**:
 
     `$gt`  selects those documents where the value of the field is greater than (i.e. >) the specified value.  
-    `SORT`: -1 order of ascending and 1 in descending
+    `SORT`: -1 order of descending and 1 in ascending
 
     **COMPASS**
 
@@ -150,7 +150,7 @@ ___
     **COMPASS**
 
     ```COMPASS
-    SORT: { "ipo.valuation_amount": 1 }
+    SORT: { "ipo.valuation_amount": -1 }
     ```
 
     **MONGO SHELL**
