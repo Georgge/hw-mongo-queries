@@ -341,7 +341,25 @@ ___
     ```
 ___
 
-19. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
+19. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011: 
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { $and: [{ founded_year: { $gte: 2000 }}, {founded_year: { $lte: 2010 } }], "acquisition.acquired_year": { $gt: 2011} }
+    ```
+
+    A tittle simpler
+
+    ```COMPASS
+    FILTER: { founded_year: { $gte: 2000 , $lte: 2010 }, "acquisition.acquired_year": { $gt: 2011} }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({$and: [{founded_year: {$gte: 2000}}, {founded_year: {$lte: 2010}}], "acquisition.acquired_year": {$gt: 2011}})
+    ```
 
 
 Happy Coding! :heart:
