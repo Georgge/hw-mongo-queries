@@ -178,7 +178,7 @@ ___
     **COMPASS**
 
     ```COMPASS
-    ILTER: { founded_month: { $gt: 5 } }
+    FILTER: { founded_month: { $gt: 5 } }
     LIMIT: 1000
     ```
 
@@ -189,7 +189,21 @@ ___
     ```
 ___
 
-12. All the companies founded before 2000 that have and acquisition amount of more than 10.000.000
+12. All the companies founded before 2000 that have and acquisition amount of more than 10.000.000:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { founded_year: { $lt: 2000 }, "acquisition.price_amount": { $gt: 10000000 } }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({founded_year: {$lt: 2000}, "acquisition.price_amount": { $gt: 10000000}})
+    ```
+___
+
 13. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field.
 14. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
 15. All the companies that have been founded on the first seven days of the month, including the seventh. Sort them by their `aquisition price` descendently. Limit the search to 10 documents.
