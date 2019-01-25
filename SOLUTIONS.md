@@ -145,6 +145,8 @@ ___
 
 9. Order all the companies by their IPO price descendently:
 
+    **A very little biter explanation about indexes** : Indexes are auxiliary structures that allows to Database the access to data faster. You can imagine the index like a copy of a Collection, but that copy is ordered and contains only certain keys of the Collection.
+
     **COMPASS**
 
     ```COMPASS
