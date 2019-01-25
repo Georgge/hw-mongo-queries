@@ -287,7 +287,7 @@ ___
 
 16. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascendant order:
 
-    `$regex` provides regular expression capabilities for pattern matching strings in queries. See options [https://docs.mongodb.com/manual/reference/operator/query/regex/#op._S_options](here)
+    `$regex` provides regular expression capabilities for pattern matching strings in queries. See options [here](https://docs.mongodb.com/manual/reference/operator/query/regex/#op._S_options)
 
     **COMPASS**
 
