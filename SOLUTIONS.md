@@ -91,7 +91,21 @@ ___
     ```
 ___
 
-6. All the companies that don't include the `partners` field.
+6. All the companies that don't include the `partners` field:
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { partners: { $exists: false } }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({partners: { $exists: false }})
+    ```
+___
+
 7. All the companies that have a null type of value on the `category_code` field.
 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
 9. Order all the companies by their IPO price descendently.
