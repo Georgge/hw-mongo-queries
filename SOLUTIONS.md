@@ -285,7 +285,26 @@ ___
     ```
 ___
 
-16. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascendant order.
+16. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascendant order:
+
+    `$regex` provides regular expression capabilities for pattern matching strings in queries. See options [https://docs.mongodb.com/manual/reference/operator/query/regex/#op._S_options](here)
+
+    **COMPASS**
+
+    ```COMPASS
+    FILTER: { category_code: { $regex: 'web', $options: 'i' }, number_of_employees: { $gt: 4000 } }
+    // $regex it is optional if you are sure that the field is normalized
+    SORT: { number_of_employees: 1 }
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').createIndex({number_of_employees: 1}) // to avoid memory overflow
+    db.getCollection('companies').find({category_code: {$regex: 'web', $options: 'i'}, number_of_employees: {$gt: 4000}}).sort({number_of_employees: 1})
+    ```
+___
+
 17. All the companies which their acquisition amount is more than 10.000.000, and currency are 'EUR'.
 18. All the companies that have been acquired on the first trimester of the year. Limit the search to 10 companies, and retrieve only their `name` and `acquisition` fields.
 19. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
