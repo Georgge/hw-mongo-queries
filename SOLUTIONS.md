@@ -157,7 +157,24 @@ ___
     **Only in mongo shell**...When there are many documents, the memory overflows when doing the `sort` causing an error. The solution is to create an `Index` before executing the query.
 ___
 
-10. Retrieve the 10 companies with more employees, order by the `number of employees`
+10. Retrieve the 10 companies with more employees, order by the `number of employees`:
+
+    **COMPASS**
+
+    ```COMPASS
+    SORT: { number_of_employees: -1 }
+    LIMIT: 10
+    ```
+
+    **MONGO SHELL**
+
+    ```MONGO SHELL
+    db.getCollection('companies').find({}).sort({number_of_employees: -1}).limit(10)
+    ```
+
+    **Only in mongo shell**...When there are many documents, the memory overflows when doing the `sort` causing an error. The solution is to create an `Index` before executing the query.
+___
+
 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies.
 12. All the companies founded before 2000 that have and acquisition amount of more than 10.000.000
 13. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field.
